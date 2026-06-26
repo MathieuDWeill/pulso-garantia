@@ -7,6 +7,39 @@ st.set_page_config(
     layout="wide",
 )
 
+TEXT = {
+    "EN": {
+        "command": "Command Center",
+        "demo": "Escrow Demo",
+        "discovery": "Customer Discovery",
+        "submission": "Submission Pack",
+        "title": "Trust is not a feeling. It is a contract state.",
+        "subtitle": "Pulso Garantia turns LATAM cross-border service payments into programmable escrow on Stellar/Soroban.",
+        "thesis_title": "Cross-border work needs proof before trust.",
+        "thesis_body": "Freelancers, agencies and small exporters in Latin America often rely on informal agreements, bank transfers, screenshots and platform reputation. Pulso Garantia makes payment status explicit: created, funded, released, disputed or refunded.",
+        "choose": "Choose demo scenario",
+        "simulate": "Simulate contract transition",
+        "discovery_title": "3 interviews, 3 workflows, one repeated trust gap.",
+        "discovery_body": "The hackathon requires customer discovery. This page turns interviews into visible evidence for the jury.",
+        "submission_title": "Submission readiness",
+    },
+    "FR": {
+        "command": "Centre de commande",
+        "demo": "Démo escrow",
+        "discovery": "Validation client",
+        "submission": "Dossier de soumission",
+        "title": "La confiance n'est pas un sentiment. C'est un état de contrat.",
+        "subtitle": "Pulso Garantia transforme les paiements cross-border de services LATAM en escrow programmable sur Stellar/Soroban.",
+        "thesis_title": "Le travail cross-border a besoin de preuve avant la confiance.",
+        "thesis_body": "Freelances, agences et petits exportateurs de services en Amérique latine s'appuient encore sur des accords informels, des virements, des captures d'écran et la réputation des plateformes. Pulso Garantia rend l'état du paiement explicite : créé, financé, libéré, contesté ou remboursé.",
+        "choose": "Choisir un scénario démo",
+        "simulate": "Simuler une transition de contrat",
+        "discovery_title": "3 interviews, 3 workflows, une même faille de confiance.",
+        "discovery_body": "Le hackathon exige de la validation client. Cette page transforme les interviews en preuve visible pour le jury.",
+        "submission_title": "Préparation soumission",
+    },
+}
+
 st.markdown("""
 <style>
 html, body, [data-testid="stAppViewContainer"] {
@@ -125,62 +158,34 @@ html, body, [data-testid="stAppViewContainer"] {
 </style>
 """, unsafe_allow_html=True)
 
-# Default language is English for international jury.
-default_lang = "EN"
-
 with st.sidebar:
     st.markdown("## ✦ PULSO GARANTIA")
     st.markdown("**TRUST INFRASTRUCTURE**")
     st.markdown("---")
     lang = st.radio("Language", ["EN", "FR"], horizontal=True)
+    copy = TEXT[lang]
+
     st.markdown("---")
     page_label = st.radio(
         "Navigation",
         [
-            TEXT[lang]["command"],
-            TEXT[lang]["demo"],
-            TEXT[lang]["discovery"],
-            TEXT[lang]["submission"],
+            copy["command"],
+            copy["demo"],
+            copy["discovery"],
+            copy["submission"],
         ],
     )
-
-    reverse_page = {
-        TEXT[lang]["command"]: "Command Center",
-        TEXT[lang]["demo"]: "Escrow Demo",
-        TEXT[lang]["discovery"]: "Customer Discovery",
-        TEXT[lang]["submission"]: "Submission Pack",
+    page_map = {
+        copy["command"]: "Command Center",
+        copy["demo"]: "Escrow Demo",
+        copy["discovery"]: "Customer Discovery",
+        copy["submission"]: "Submission Pack",
     }
-    page = reverse_page[page_label]
+    page = page_map[page_label]
+
     st.markdown("---")
     st.markdown("**Stellar PULSO Hackathon**")
     st.markdown("Testnet-first · Soroban escrow · LATAM services")
-
-TEXT = {
-    "EN": {
-        "title": "Trust is not a feeling. It is a contract state.",
-        "subtitle": "Pulso Garantia turns LATAM cross-border service payments into programmable escrow on Stellar/Soroban.",
-        "thesis_title": "Cross-border work needs proof before trust.",
-        "thesis_body": "Freelancers, agencies and small exporters in Latin America often rely on informal agreements, bank transfers, screenshots and platform reputation. Pulso Garantia makes payment status explicit: created, funded, released, disputed or refunded.",
-        "nav": "Navigation",
-        "command": "Command Center",
-        "demo": "Escrow Demo",
-        "discovery": "Customer Discovery",
-        "submission": "Submission Pack",
-    },
-    "FR": {
-        "title": "La confiance n'est pas un sentiment. C'est un état de contrat.",
-        "subtitle": "Pulso Garantia transforme les paiements cross-border de services LATAM en escrow programmable sur Stellar/Soroban.",
-        "thesis_title": "Le travail cross-border a besoin de preuve avant la confiance.",
-        "thesis_body": "Freelances, agences et petits exportateurs de services en Amérique latine s'appuient encore sur des accords informels, des virements, des captures d'écran et la réputation des plateformes. Pulso Garantia rend l'état du paiement explicite : créé, financé, libéré, contesté ou remboursé.",
-        "nav": "Navigation",
-        "command": "Centre de commande",
-        "demo": "Démo escrow",
-        "discovery": "Validation client",
-        "submission": "Dossier de soumission",
-    },
-}
-
-copy = TEXT[lang]
 
 st.markdown(f"""
 <div class="hero">
@@ -236,9 +241,9 @@ elif page == "Escrow Demo":
         },
     ]
 
-    choice = st.selectbox("Choose demo scenario", [s["title"] for s in scenarios])
+    choice = st.selectbox(copy["choose"], [s["title"] for s in scenarios])
     scenario = next(s for s in scenarios if s["title"] == choice)
-    action = st.radio("Simulate contract transition", ["Created", "Funded", "Released", "Disputed"], horizontal=True)
+    action = st.radio(copy["simulate"], ["Created", "Funded", "Released", "Disputed"], horizontal=True)
 
     col1, col2 = st.columns([1.3, 1])
 
@@ -279,10 +284,10 @@ elif page == "Escrow Demo":
 """, unsafe_allow_html=True)
 
 elif page == "Customer Discovery":
-    st.markdown("""
+    st.markdown(f"""
 <div class="panel">
-<h2>3 interviews, 3 workflows, one repeated trust gap.</h2>
-<p>The hackathon requires customer discovery. This page turns interviews into visible evidence for the jury.</p>
+<h2>{copy["discovery_title"]}</h2>
+<p>{copy["discovery_body"]}</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -296,9 +301,9 @@ elif page == "Customer Discovery":
     st.markdown('<div class="quote">“If the money is visibly reserved before I start, I can accept new clients faster.”</div>', unsafe_allow_html=True)
 
 elif page == "Submission Pack":
-    st.markdown("""
+    st.markdown(f"""
 <div class="panel">
-<h2>Submission readiness</h2>
+<h2>{copy["submission_title"]}</h2>
 <div class="state state-active">Public GitHub repo</div>
 <div class="state state-active">README with clear Stellar integration</div>
 <div class="state state-active">Demo app</div>
