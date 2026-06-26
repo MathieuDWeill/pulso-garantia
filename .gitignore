@@ -5,3 +5,6 @@ dist
 target
 .DS_Store
 *.log
+
+# TypeScript
+*.tsbuildinfo
