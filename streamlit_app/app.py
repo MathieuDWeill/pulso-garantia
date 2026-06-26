@@ -315,10 +315,10 @@ elif page == "Submission Pack":
 """, unsafe_allow_html=True)
 
     st.code("""
-GitHub:
-Live demo:
-Demo video:
-Pitch deck:
-Testnet contract:
-Interview evidence:
+GitHub: https://github.com/MathieuDWeill/pulso-garantia
+Live demo: PASTE_STREAMLIT_URL_HERE
+Demo video: PASTE_LOOM_OR_YOUTUBE_URL_HERE
+Pitch deck: docs/pitch-deck/PITCH_DECK_8_SLIDES.md
+Testnet contract: pending / to be added after deployment
+Interview evidence: docs/interviews/EVIDENCE_TABLE.md
 """)
