@@ -125,28 +125,58 @@ html, body, [data-testid="stAppViewContainer"] {
 </style>
 """, unsafe_allow_html=True)
 
+# Default language is English for international jury.
+default_lang = "EN"
+
 with st.sidebar:
     st.markdown("## ✦ PULSO GARANTIA")
     st.markdown("**TRUST INFRASTRUCTURE**")
     st.markdown("---")
-    lang = st.radio("Language", ["FR", "EN"], horizontal=True)
+    lang = st.radio("Language", ["EN", "FR"], horizontal=True)
     st.markdown("---")
-    page = st.radio(
+    page_label = st.radio(
         "Navigation",
-        ["Command Center", "Escrow Demo", "Customer Discovery", "Submission Pack"],
+        [
+            TEXT[lang]["command"],
+            TEXT[lang]["demo"],
+            TEXT[lang]["discovery"],
+            TEXT[lang]["submission"],
+        ],
     )
+
+    reverse_page = {
+        TEXT[lang]["command"]: "Command Center",
+        TEXT[lang]["demo"]: "Escrow Demo",
+        TEXT[lang]["discovery"]: "Customer Discovery",
+        TEXT[lang]["submission"]: "Submission Pack",
+    }
+    page = reverse_page[page_label]
     st.markdown("---")
     st.markdown("**Stellar PULSO Hackathon**")
     st.markdown("Testnet-first · Soroban escrow · LATAM services")
 
 TEXT = {
-    "FR": {
-        "title": "La confiance n'est pas un sentiment. C'est un état de contrat.",
-        "subtitle": "Pulso Garantia transforme les paiements cross-border de services LATAM en escrow programmable sur Stellar/Soroban.",
-    },
     "EN": {
         "title": "Trust is not a feeling. It is a contract state.",
         "subtitle": "Pulso Garantia turns LATAM cross-border service payments into programmable escrow on Stellar/Soroban.",
+        "thesis_title": "Cross-border work needs proof before trust.",
+        "thesis_body": "Freelancers, agencies and small exporters in Latin America often rely on informal agreements, bank transfers, screenshots and platform reputation. Pulso Garantia makes payment status explicit: created, funded, released, disputed or refunded.",
+        "nav": "Navigation",
+        "command": "Command Center",
+        "demo": "Escrow Demo",
+        "discovery": "Customer Discovery",
+        "submission": "Submission Pack",
+    },
+    "FR": {
+        "title": "La confiance n'est pas un sentiment. C'est un état de contrat.",
+        "subtitle": "Pulso Garantia transforme les paiements cross-border de services LATAM en escrow programmable sur Stellar/Soroban.",
+        "thesis_title": "Le travail cross-border a besoin de preuve avant la confiance.",
+        "thesis_body": "Freelances, agences et petits exportateurs de services en Amérique latine s'appuient encore sur des accords informels, des virements, des captures d'écran et la réputation des plateformes. Pulso Garantia rend l'état du paiement explicite : créé, financé, libéré, contesté ou remboursé.",
+        "nav": "Navigation",
+        "command": "Centre de commande",
+        "demo": "Démo escrow",
+        "discovery": "Validation client",
+        "submission": "Dossier de soumission",
     },
 }
 
@@ -175,10 +205,10 @@ if page == "Command Center":
     with c4:
         st.markdown('<div class="kpi kpi-red"><div class="kpi-label">Risk reduced</div><div class="kpi-value">High</div><p>No blind upfront trust.</p></div>', unsafe_allow_html=True)
 
-    st.markdown("""
+    st.markdown(f"""
 <div class="panel">
-<h2>Cross-border work needs proof before trust.</h2>
-<p>Freelancers, agencies and small exporters in Latin America often rely on informal agreements, bank transfers, screenshots and platform reputation. Pulso Garantia makes payment status explicit: created, funded, released, disputed or refunded.</p>
+<h2>{copy["thesis_title"]}</h2>
+<p>{copy["thesis_body"]}</p>
 </div>
 """, unsafe_allow_html=True)
 
