@@ -1,0 +1,18 @@
+{
+  "name": "pulso-garantia",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Stellar/Soroban escrow MVP for NearX Stellar PULSO Hackathon",
+  "scripts": {
+    "dev": "pnpm --filter @pulso/web dev",
+    "build": "pnpm --filter @pulso/web build",
+    "lint": "pnpm --filter @pulso/web lint",
+    "format": "prettier --write .",
+    "check:submission": "node scripts/check-submission.mjs",
+    "demo:data": "node scripts/generate-demo-data.mjs",
+    "contract:test": "cd contracts/escrow && cargo test"
+  },
+  "workspaces": ["apps/*"],
+  "devDependencies": { "prettier": "^3.3.3" },
+  "packageManager": "pnpm@9.12.0"
+}
