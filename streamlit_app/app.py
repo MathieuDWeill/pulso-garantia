@@ -278,8 +278,8 @@ elif page == "Escrow Demo":
     st.markdown("""
 <div class="panel">
 <h2>Testnet proof placeholder</h2>
-<p><strong>Contract ID:</strong> mock-contract-not-deployed-yet</p>
-<p><strong>Latest tx:</strong> mock-tx-proof — replace with Stellar Expert link after deployment.</p>
+<p><strong>Contract ID:</strong> CBFVX5YPCJA4L5BPLWNXOQUU4YB25ZZY3IHQQSD73MMNSX7ZUC2DXEII</p>
+<p><strong>Latest tx:</strong> https://stellar.expert/explorer/testnet/tx/3ea2956cd9670b2f286f53c58d18901ea5d124fe2778b194facad0a7435952a1 — replace with Stellar Expert link after deployment.</p>
 </div>
 """, unsafe_allow_html=True)
 
