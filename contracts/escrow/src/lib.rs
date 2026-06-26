@@ -154,7 +154,7 @@ mod test {
     #[test]
     fn create_fund_release() {
         let (env, client, buyer, seller, arbiter) = setup();
-        let id = client.create(&buyer, &seller, &arbiter, &850, &symbol_short!(USDC), &String::from_str(&env, "Landing page accepted"), &1000);
+        let id = client.create(&buyer, &seller, &arbiter, &850, &symbol_short!("USDC"), &String::from_str(&env, "Landing page accepted"), &1000);
         let funded = client.fund(&id, &buyer);
         assert_eq!(funded.status, Status::Funded);
         let released = client.release(&id, &buyer);
@@ -164,7 +164,7 @@ mod test {
     #[test]
     fn dispute_can_be_resolved_by_arbiter() {
         let (env, client, buyer, seller, arbiter) = setup();
-        let id = client.create(&buyer, &seller, &arbiter, &1200, &symbol_short!(USDC), &String::from_str(&env, "Bot deployed"), &1000);
+        let id = client.create(&buyer, &seller, &arbiter, &1200, &symbol_short!("USDC"), &String::from_str(&env, "Bot deployed"), &1000);
         client.fund(&id, &buyer);
         let disputed = client.open_dispute(&id, &seller);
         assert_eq!(disputed.status, Status::Disputed);
@@ -175,7 +175,7 @@ mod test {
     #[test]
     fn deadline_refund_requires_time() {
         let (env, client, buyer, seller, arbiter) = setup();
-        let id = client.create(&buyer, &seller, &arbiter, &400, &symbol_short!(USDC), &String::from_str(&env, "Design files"), &110);
+        let id = client.create(&buyer, &seller, &arbiter, &400, &symbol_short!("USDC"), &String::from_str(&env, "Design files"), &110);
         client.fund(&id, &buyer);
         env.ledger().with_mut(|li| { li.sequence_number = 111; });
         let refunded = client.refund_after_deadline(&id, &buyer);
